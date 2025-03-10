@@ -1,21 +1,17 @@
 // Import necessary modules
 import express, { Express, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
-import helmet from 'helmet';
+
 import rateLimit from 'express-rate-limit';
 import morgan from 'morgan';
 import winston from 'winston';
-import { orderRouter, cartRouter, authRouter, userRouter, articleRouter, shopRouter, storeRouter, utileRouter, paymentRouter, categoriesRouter, usersRouter, ordersRouter, permissionsRouter, rolesRouter, subcategoriesRouter, dashboardRouter } from './src/routes';
+import {  authRouter, articleRouter,userRouter } from './src/routes';
 import { CustomError } from './src/utils/customError';
 import config from './src/config/config';
 import db from './src/models';
-import multer, { FileFilterCallback } from 'multer';
-import path from 'node:path';
 
 
-import { CustomRequest } from 'interfaces/types/middlewares/request.middleware.types';
-import { storeMiddleWear } from './src/middlewares/store.middleweare';
-import { shopMiddleWare } from './src/middlewares/shop.middleware';
+
 
 
 
@@ -37,8 +33,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 // Create an Express application
 const app: Express = express();
-app.use('/compressed', express.static(path.join(__dirname, 'compressed')));
-
 
 
 // Increase the request body size limit for URL-encoded bodies
